@@ -5,6 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ValidInputDirective } from 'src/app/commons/directives/valid-input.directive';
 import { LoadingButtonComponent } from 'src/app/commons/components/loading-button/loading-button.component';
 import { AuthService } from '../services/auth.service';
+import { ToastrService, ToastrType } from 'src/app/commons/services/toastr.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
     isLoading: boolean = false;
 
     constructor(
-      private _auth: AuthService
+      private _auth: AuthService,
+      private _toastr: ToastrService
     ){
 
     }
@@ -25,7 +27,9 @@ export class LoginComponent {
 
     login(form:NgForm){
       if(form.valid){
+        this.isLoading = true;
         this._auth.login(form.value)
+        this.isLoading = false;
       }
       
     }

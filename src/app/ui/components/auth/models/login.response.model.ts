@@ -8,4 +8,5 @@ export class LoginResponseModel {
     token: TokenModel = new TokenModel();
     companies: CompanyModel[] = [];
     company: CompanyModel = new CompanyModel();
+    year: number = new Date().getFullYear();
 }
